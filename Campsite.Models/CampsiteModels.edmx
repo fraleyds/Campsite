@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CampsiteDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CampsiteUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="IdentityRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar(max)" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="CampsiteUser_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="IdentityUserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar(max)" />
+          <Property Name="ProviderKey" Type="nvarchar(max)" />
+          <Property Name="CampsiteUser_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="IdentityUserRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar(max)" />
+          <Property Name="IdentityRole_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="CampsiteUser_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="InventoryEntity">
+          <Key>
+            <PropertyRef Name="InventoryId" />
+          </Key>
+          <Property Name="InventoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemEntity">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Condition" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+          <Property Name="InventoryId" Type="int" Nullable="false" />
+          <Property Name="TransactionId" Type="int" />
+        </EntityType>
+        <EntityType Name="OwnerEntity">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="OwnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="OwnerRating" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RenterEntity">
+          <Key>
+            <PropertyRef Name="RenterId" />
+          </Key>
+          <Property Name="RenterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RenterRating" Type="int" Nullable="false" />
+          <Property Name="IsRenting" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionEntity">
+          <Key>
+            <PropertyRef Name="TransactionId" />
+          </Key>
+          <Property Name="TransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="FinalPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RenterId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_IdentityUserClaim_dbo_CampsiteUser_CampsiteUser_Id">
+          <End Role="CampsiteUser" Type="Self.CampsiteUser" Multiplicity="0..1" />
+          <End Role="IdentityUserClaim" Type="Self.IdentityUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CampsiteUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserClaim">
+              <PropertyRef Name="CampsiteUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserLogin_dbo_CampsiteUser_CampsiteUser_Id">
+          <End Role="CampsiteUser" Type="Self.CampsiteUser" Multiplicity="0..1" />
+          <End Role="IdentityUserLogin" Type="Self.IdentityUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CampsiteUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserLogin">
+              <PropertyRef Name="CampsiteUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRole_dbo_CampsiteUser_CampsiteUser_Id">
+          <End Role="CampsiteUser" Type="Self.CampsiteUser" Multiplicity="0..1" />
+          <End Role="IdentityUserRole" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CampsiteUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRole">
+              <PropertyRef Name="CampsiteUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRole_dbo_IdentityRole_IdentityRole_Id">
+          <End Role="IdentityRole" Type="Self.IdentityRole" Multiplicity="0..1" />
+          <End Role="IdentityUserRole" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRole">
+              <PropertyRef Name="IdentityRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InventoryEntity_dbo_OwnerEntity_OwnerId">
+          <End Role="OwnerEntity" Type="Self.OwnerEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InventoryEntity" Type="Self.InventoryEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OwnerEntity">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="InventoryEntity">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ItemEntity_dbo_InventoryEntity_InventoryId">
+          <End Role="InventoryEntity" Type="Self.InventoryEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemEntity" Type="Self.ItemEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryEntity">
+              <PropertyRef Name="InventoryId" />
+            </Principal>
+            <Dependent Role="ItemEntity">
+              <PropertyRef Name="InventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ItemEntity_dbo_TransactionEntity_TransactionId">
+          <End Role="TransactionEntity" Type="Self.TransactionEntity" Multiplicity="0..1" />
+          <End Role="ItemEntity" Type="Self.ItemEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionEntity">
+              <PropertyRef Name="TransactionId" />
+            </Principal>
+            <Dependent Role="ItemEntity">
+              <PropertyRef Name="TransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TransactionEntity_dbo_RenterEntity_RenterId">
+          <End Role="RenterEntity" Type="Self.RenterEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TransactionEntity" Type="Self.TransactionEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RenterEntity">
+              <PropertyRef Name="RenterId" />
+            </Principal>
+            <Dependent Role="TransactionEntity">
+              <PropertyRef Name="RenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CampsiteDBModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CampsiteUser" EntityType="Self.CampsiteUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityRole" EntityType="Self.IdentityRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserClaim" EntityType="Self.IdentityUserClaim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserLogin" EntityType="Self.IdentityUserLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserRole" EntityType="Self.IdentityUserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryEntity" EntityType="Self.InventoryEntity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemEntity" EntityType="Self.ItemEntity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OwnerEntity" EntityType="Self.OwnerEntity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RenterEntity" EntityType="Self.RenterEntity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionEntity" EntityType="Self.TransactionEntity" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_IdentityUserClaim_dbo_CampsiteUser_CampsiteUser_Id" Association="Self.FK_dbo_IdentityUserClaim_dbo_CampsiteUser_CampsiteUser_Id">
+            <End Role="CampsiteUser" EntitySet="CampsiteUser" />
+            <End Role="IdentityUserClaim" EntitySet="IdentityUserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserLogin_dbo_CampsiteUser_CampsiteUser_Id" Association="Self.FK_dbo_IdentityUserLogin_dbo_CampsiteUser_CampsiteUser_Id">
+            <End Role="CampsiteUser" EntitySet="CampsiteUser" />
+            <End Role="IdentityUserLogin" EntitySet="IdentityUserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRole_dbo_CampsiteUser_CampsiteUser_Id" Association="Self.FK_dbo_IdentityUserRole_dbo_CampsiteUser_CampsiteUser_Id">
+            <End Role="CampsiteUser" EntitySet="CampsiteUser" />
+            <End Role="IdentityUserRole" EntitySet="IdentityUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRole_dbo_IdentityRole_IdentityRole_Id" Association="Self.FK_dbo_IdentityUserRole_dbo_IdentityRole_IdentityRole_Id">
+            <End Role="IdentityRole" EntitySet="IdentityRole" />
+            <End Role="IdentityUserRole" EntitySet="IdentityUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InventoryEntity_dbo_OwnerEntity_OwnerId" Association="Self.FK_dbo_InventoryEntity_dbo_OwnerEntity_OwnerId">
+            <End Role="OwnerEntity" EntitySet="OwnerEntity" />
+            <End Role="InventoryEntity" EntitySet="InventoryEntity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ItemEntity_dbo_InventoryEntity_InventoryId" Association="Self.FK_dbo_ItemEntity_dbo_InventoryEntity_InventoryId">
+            <End Role="InventoryEntity" EntitySet="InventoryEntity" />
+            <End Role="ItemEntity" EntitySet="ItemEntity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ItemEntity_dbo_TransactionEntity_TransactionId" Association="Self.FK_dbo_ItemEntity_dbo_TransactionEntity_TransactionId">
+            <End Role="TransactionEntity" EntitySet="TransactionEntity" />
+            <End Role="ItemEntity" EntitySet="ItemEntity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TransactionEntity_dbo_RenterEntity_RenterId" Association="Self.FK_dbo_TransactionEntity_dbo_RenterEntity_RenterId">
+            <End Role="RenterEntity" EntitySet="RenterEntity" />
+            <End Role="TransactionEntity" EntitySet="TransactionEntity" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CampsiteDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CampsiteUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IdentityUserClaims" Relationship="Self.FK_dbo_IdentityUserClaim_dbo_CampsiteUser_CampsiteUser_Id" FromRole="CampsiteUser" ToRole="IdentityUserClaim" />
+          <NavigationProperty Name="IdentityUserLogins" Relationship="Self.FK_dbo_IdentityUserLogin_dbo_CampsiteUser_CampsiteUser_Id" FromRole="CampsiteUser" ToRole="IdentityUserLogin" />
+          <NavigationProperty Name="IdentityUserRoles" Relationship="Self.FK_dbo_IdentityUserRole_dbo_CampsiteUser_CampsiteUser_Id" FromRole="CampsiteUser" ToRole="IdentityUserRole" />
+        </EntityType>
+        <EntityType Name="IdentityRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IdentityUserRoles" Relationship="Self.FK_dbo_IdentityUserRole_dbo_IdentityRole_IdentityRole_Id" FromRole="IdentityRole" ToRole="IdentityUserRole" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CampsiteUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CampsiteUser" Relationship="Self.FK_dbo_IdentityUserClaim_dbo_CampsiteUser_CampsiteUser_Id" FromRole="IdentityUserClaim" ToRole="CampsiteUser" />
+        </EntityType>
+        <EntityType Name="IdentityUserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CampsiteUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CampsiteUser" Relationship="Self.FK_dbo_IdentityUserLogin_dbo_CampsiteUser_CampsiteUser_Id" FromRole="IdentityUserLogin" ToRole="CampsiteUser" />
+        </EntityType>
+        <EntityType Name="IdentityUserRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityRole_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CampsiteUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CampsiteUser" Relationship="Self.FK_dbo_IdentityUserRole_dbo_CampsiteUser_CampsiteUser_Id" FromRole="IdentityUserRole" ToRole="CampsiteUser" />
+          <NavigationProperty Name="IdentityRole" Relationship="Self.FK_dbo_IdentityUserRole_dbo_IdentityRole_IdentityRole_Id" FromRole="IdentityUserRole" ToRole="IdentityRole" />
+        </EntityType>
+        <EntityType Name="InventoryEntity">
+          <Key>
+            <PropertyRef Name="InventoryId" />
+          </Key>
+          <Property Name="InventoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OwnerEntity" Relationship="Self.FK_dbo_InventoryEntity_dbo_OwnerEntity_OwnerId" FromRole="InventoryEntity" ToRole="OwnerEntity" />
+          <NavigationProperty Name="ItemEntities" Relationship="Self.FK_dbo_ItemEntity_dbo_InventoryEntity_InventoryId" FromRole="InventoryEntity" ToRole="ItemEntity" />
+        </EntityType>
+        <EntityType Name="ItemEntity">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Condition" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <Property Name="InventoryId" Type="Int32" Nullable="false" />
+          <Property Name="TransactionId" Type="Int32" />
+          <NavigationProperty Name="InventoryEntity" Relationship="Self.FK_dbo_ItemEntity_dbo_InventoryEntity_InventoryId" FromRole="ItemEntity" ToRole="InventoryEntity" />
+          <NavigationProperty Name="TransactionEntity" Relationship="Self.FK_dbo_ItemEntity_dbo_TransactionEntity_TransactionId" FromRole="ItemEntity" ToRole="TransactionEntity" />
+        </EntityType>
+        <EntityType Name="OwnerEntity">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="OwnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OwnerRating" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InventoryEntities" Relationship="Self.FK_dbo_InventoryEntity_dbo_OwnerEntity_OwnerId" FromRole="OwnerEntity" ToRole="InventoryEntity" />
+        </EntityType>
+        <EntityType Name="RenterEntity">
+          <Key>
+            <PropertyRef Name="RenterId" />
+          </Key>
+          <Property Name="RenterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RenterRating" Type="Int32" Nullable="false" />
+          <Property Name="IsRenting" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TransactionEntities" Relationship="Self.FK_dbo_TransactionEntity_dbo_RenterEntity_RenterId" FromRole="RenterEntity" ToRole="TransactionEntity" />
+        </EntityType>
+        <EntityType Name="TransactionEntity">
+          <Key>
+            <PropertyRef Name="TransactionId" />
+          </Key>
+          <Property Name="TransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RenterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ItemEntities" Relationship="Self.FK_dbo_ItemEntity_dbo_TransactionEntity_TransactionId" FromRole="TransactionEntity" ToRole="ItemEntity" />
+          <NavigationProperty Name="RenterEntity" Relationship="Self.FK_dbo_TransactionEntity_dbo_RenterEntity_RenterId" FromRole="TransactionEntity" ToRole="RenterEntity" />
+        </EntityType>
+        <Association Name="FK_dbo_IdentityUserClaim_dbo_CampsiteUser_CampsiteUser_Id">
+          <End Role="CampsiteUser" Type="Self.CampsiteUser" Multiplicity="0..1" />
+          <End Role="IdentityUserClaim" Type="Self.IdentityUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CampsiteUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserClaim">
+              <PropertyRef Name="CampsiteUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserLogin_dbo_CampsiteUser_CampsiteUser_Id">
+          <End Role="CampsiteUser" Type="Self.CampsiteUser" Multiplicity="0..1" />
+          <End Role="IdentityUserLogin" Type="Self.IdentityUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CampsiteUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserLogin">
+              <PropertyRef Name="CampsiteUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRole_dbo_CampsiteUser_CampsiteUser_Id">
+          <End Role="CampsiteUser" Type="Self.CampsiteUser" Multiplicity="0..1" />
+          <End Role="IdentityUserRole" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CampsiteUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRole">
+              <PropertyRef Name="CampsiteUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRole_dbo_IdentityRole_IdentityRole_Id">
+          <End Role="IdentityRole" Type="Self.IdentityRole" Multiplicity="0..1" />
+          <End Role="IdentityUserRole" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRole">
+              <PropertyRef Name="IdentityRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InventoryEntity_dbo_OwnerEntity_OwnerId">
+          <End Role="OwnerEntity" Type="Self.OwnerEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InventoryEntity" Type="Self.InventoryEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OwnerEntity">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="InventoryEntity">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ItemEntity_dbo_InventoryEntity_InventoryId">
+          <End Role="InventoryEntity" Type="Self.InventoryEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemEntity" Type="Self.ItemEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryEntity">
+              <PropertyRef Name="InventoryId" />
+            </Principal>
+            <Dependent Role="ItemEntity">
+              <PropertyRef Name="InventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ItemEntity_dbo_TransactionEntity_TransactionId">
+          <End Role="TransactionEntity" Type="Self.TransactionEntity" Multiplicity="0..1" />
+          <End Role="ItemEntity" Type="Self.ItemEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionEntity">
+              <PropertyRef Name="TransactionId" />
+            </Principal>
+            <Dependent Role="ItemEntity">
+              <PropertyRef Name="TransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TransactionEntity_dbo_RenterEntity_RenterId">
+          <End Role="RenterEntity" Type="Self.RenterEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TransactionEntity" Type="Self.TransactionEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RenterEntity">
+              <PropertyRef Name="RenterId" />
+            </Principal>
+            <Dependent Role="TransactionEntity">
+              <PropertyRef Name="RenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CampsiteDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="CampsiteUsers" EntityType="Self.CampsiteUser" />
+          <EntitySet Name="IdentityRoles" EntityType="Self.IdentityRole" />
+          <EntitySet Name="IdentityUserClaims" EntityType="Self.IdentityUserClaim" />
+          <EntitySet Name="IdentityUserLogins" EntityType="Self.IdentityUserLogin" />
+          <EntitySet Name="IdentityUserRoles" EntityType="Self.IdentityUserRole" />
+          <EntitySet Name="InventoryEntities" EntityType="Self.InventoryEntity" />
+          <EntitySet Name="ItemEntities" EntityType="Self.ItemEntity" />
+          <EntitySet Name="OwnerEntities" EntityType="Self.OwnerEntity" />
+          <EntitySet Name="RenterEntities" EntityType="Self.RenterEntity" />
+          <EntitySet Name="TransactionEntities" EntityType="Self.TransactionEntity" />
+          <AssociationSet Name="FK_dbo_IdentityUserClaim_dbo_CampsiteUser_CampsiteUser_Id" Association="Self.FK_dbo_IdentityUserClaim_dbo_CampsiteUser_CampsiteUser_Id">
+            <End Role="CampsiteUser" EntitySet="CampsiteUsers" />
+            <End Role="IdentityUserClaim" EntitySet="IdentityUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserLogin_dbo_CampsiteUser_CampsiteUser_Id" Association="Self.FK_dbo_IdentityUserLogin_dbo_CampsiteUser_CampsiteUser_Id">
+            <End Role="CampsiteUser" EntitySet="CampsiteUsers" />
+            <End Role="IdentityUserLogin" EntitySet="IdentityUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRole_dbo_CampsiteUser_CampsiteUser_Id" Association="Self.FK_dbo_IdentityUserRole_dbo_CampsiteUser_CampsiteUser_Id">
+            <End Role="CampsiteUser" EntitySet="CampsiteUsers" />
+            <End Role="IdentityUserRole" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRole_dbo_IdentityRole_IdentityRole_Id" Association="Self.FK_dbo_IdentityUserRole_dbo_IdentityRole_IdentityRole_Id">
+            <End Role="IdentityRole" EntitySet="IdentityRoles" />
+            <End Role="IdentityUserRole" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InventoryEntity_dbo_OwnerEntity_OwnerId" Association="Self.FK_dbo_InventoryEntity_dbo_OwnerEntity_OwnerId">
+            <End Role="OwnerEntity" EntitySet="OwnerEntities" />
+            <End Role="InventoryEntity" EntitySet="InventoryEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ItemEntity_dbo_InventoryEntity_InventoryId" Association="Self.FK_dbo_ItemEntity_dbo_InventoryEntity_InventoryId">
+            <End Role="InventoryEntity" EntitySet="InventoryEntities" />
+            <End Role="ItemEntity" EntitySet="ItemEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ItemEntity_dbo_TransactionEntity_TransactionId" Association="Self.FK_dbo_ItemEntity_dbo_TransactionEntity_TransactionId">
+            <End Role="TransactionEntity" EntitySet="TransactionEntities" />
+            <End Role="ItemEntity" EntitySet="ItemEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TransactionEntity_dbo_RenterEntity_RenterId" Association="Self.FK_dbo_TransactionEntity_dbo_RenterEntity_RenterId">
+            <End Role="RenterEntity" EntitySet="RenterEntities" />
+            <End Role="TransactionEntity" EntitySet="TransactionEntities" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CampsiteDBModelStoreContainer" CdmEntityContainer="CampsiteDBEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="CampsiteDBModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CampsiteUsers">
+            <EntityTypeMapping TypeName="CampsiteDBModel.CampsiteUser">
+              <MappingFragment StoreEntitySet="CampsiteUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityRoles">
+            <EntityTypeMapping TypeName="CampsiteDBModel.IdentityRole">
+              <MappingFragment StoreEntitySet="IdentityRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserClaims">
+            <EntityTypeMapping TypeName="CampsiteDBModel.IdentityUserClaim">
+              <MappingFragment StoreEntitySet="IdentityUserClaim">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="CampsiteUser_Id" ColumnName="CampsiteUser_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserLogins">
+            <EntityTypeMapping TypeName="CampsiteDBModel.IdentityUserLogin">
+              <MappingFragment StoreEntitySet="IdentityUserLogin">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="CampsiteUser_Id" ColumnName="CampsiteUser_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserRoles">
+            <EntityTypeMapping TypeName="CampsiteDBModel.IdentityUserRole">
+              <MappingFragment StoreEntitySet="IdentityUserRole">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IdentityRole_Id" ColumnName="IdentityRole_Id" />
+                <ScalarProperty Name="CampsiteUser_Id" ColumnName="CampsiteUser_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryEntities">
+            <EntityTypeMapping TypeName="CampsiteDBModel.InventoryEntity">
+              <MappingFragment StoreEntitySet="InventoryEntity">
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemEntities">
+            <EntityTypeMapping TypeName="CampsiteDBModel.ItemEntity">
+              <MappingFragment StoreEntitySet="ItemEntity">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OwnerEntities">
+            <EntityTypeMapping TypeName="CampsiteDBModel.OwnerEntity">
+              <MappingFragment StoreEntitySet="OwnerEntity">
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="OwnerRating" ColumnName="OwnerRating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RenterEntities">
+            <EntityTypeMapping TypeName="CampsiteDBModel.RenterEntity">
+              <MappingFragment StoreEntitySet="RenterEntity">
+                <ScalarProperty Name="RenterId" ColumnName="RenterId" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="RenterRating" ColumnName="RenterRating" />
+                <ScalarProperty Name="IsRenting" ColumnName="IsRenting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionEntities">
+            <EntityTypeMapping TypeName="CampsiteDBModel.TransactionEntity">
+              <MappingFragment StoreEntitySet="TransactionEntity">
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="FinalPrice" ColumnName="FinalPrice" />
+                <ScalarProperty Name="RenterId" ColumnName="RenterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

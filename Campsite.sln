@@ -3,7 +3,49 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.Services", "Campsite.Services\Campsite.Services.csproj", "{91AC75FD-A8E6-4791-BC1C-3BB179168142}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.Contracts", "Campsite.Contracts\Campsite.Contracts.csproj", "{D3A6A0EE-B011-4657-9BE5-0A4C71C0DE4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.Web", "Campsite.Web\Campsite.Web.csproj", "{4AB9F559-D2F3-49A2-ACA9-A4ABBCACCCB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.Tests", "Campsite.Tests\Campsite.Tests.csproj", "{5CA9A1DD-625F-4F56-89D8-A6341C91469E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.Data", "Campsite.Data\Campsite.Data.csproj", "{405DCF23-1695-491A-8983-DA19B6EA10E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.Models", "Campsite.Models\Campsite.Models.csproj", "{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91AC75FD-A8E6-4791-BC1C-3BB179168142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91AC75FD-A8E6-4791-BC1C-3BB179168142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91AC75FD-A8E6-4791-BC1C-3BB179168142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91AC75FD-A8E6-4791-BC1C-3BB179168142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A6A0EE-B011-4657-9BE5-0A4C71C0DE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A6A0EE-B011-4657-9BE5-0A4C71C0DE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A6A0EE-B011-4657-9BE5-0A4C71C0DE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A6A0EE-B011-4657-9BE5-0A4C71C0DE4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB9F559-D2F3-49A2-ACA9-A4ABBCACCCB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB9F559-D2F3-49A2-ACA9-A4ABBCACCCB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB9F559-D2F3-49A2-ACA9-A4ABBCACCCB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB9F559-D2F3-49A2-ACA9-A4ABBCACCCB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA9A1DD-625F-4F56-89D8-A6341C91469E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA9A1DD-625F-4F56-89D8-A6341C91469E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA9A1DD-625F-4F56-89D8-A6341C91469E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA9A1DD-625F-4F56-89D8-A6341C91469E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{405DCF23-1695-491A-8983-DA19B6EA10E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{405DCF23-1695-491A-8983-DA19B6EA10E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{405DCF23-1695-491A-8983-DA19B6EA10E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{405DCF23-1695-491A-8983-DA19B6EA10E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
