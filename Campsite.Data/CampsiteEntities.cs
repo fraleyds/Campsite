@@ -43,19 +43,6 @@ namespace Campsite.Data
         [Key]
         public int InventoryId { get; set; }
 
-        // Owner foreign key
-        [Required]
-        public int OwnerId { get; set; }
-
-        public OwnerEntity OwnerEntity { get; set; }
-    }
-
-    public class ItemEntity
-    {
-        [Key]
-        [Required]
-        public int ItemId { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string Type { get; set; }
@@ -73,6 +60,19 @@ namespace Campsite.Data
 
         [Required]
         public bool IsAvailable { get; set; }
+
+        // Owner foreign key
+        [Required]
+        public int OwnerId { get; set; }
+
+        public OwnerEntity OwnerEntity { get; set; }
+    }
+
+    public class ItemEntity
+    {
+        [Key]
+        [Required]
+        public int ItemId { get; set; }
 
         // Foreign key to establish relationship with inventory
         public int InventoryId { get; set; }

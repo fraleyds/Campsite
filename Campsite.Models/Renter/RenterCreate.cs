@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Campsite.Models.Renter
 {
-    class RenterCreate
+    public class RenterCreate
     {
+        public string Contact { get; set; }
     }
 }

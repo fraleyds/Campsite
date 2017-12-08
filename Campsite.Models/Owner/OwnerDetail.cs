@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Campsite.Models.Owner
 {
-    class OwnerDetail
+    public class OwnerDetail
     {
     }
 }

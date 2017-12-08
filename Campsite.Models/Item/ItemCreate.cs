@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Campsite.Models
+namespace Campsite.Models.Item
 {
-    class ItemCreate
+    public class ItemCreate
     {
+
     }
 }

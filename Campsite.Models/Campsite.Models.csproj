@@ -55,71 +55,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CampsiteModels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CampsiteModels.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CampsiteModels.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CampsiteModels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CampsiteModels.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="CampsiteUser.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IdentityRole.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IdentityUserClaim.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IdentityUserLogin.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IdentityUserRole.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Inventory\InventoryCreate.cs" />
-    <Compile Include="InventoryEntity.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Inventory\InventoryDetail.cs" />
     <Compile Include="Inventory\InventoryEdit.cs" />
     <Compile Include="Inventory\InventoryListItem.cs" />
     <Compile Include="Item\ItemCreate.cs" />
-    <Compile Include="ItemEntity.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Item\ItemDetail.cs" />
     <Compile Include="Item\ItemEdit.cs" />
     <Compile Include="Item\ItemListItem.cs" />
-    <Compile Include="OwnerEntity.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Owner\OwnerCreate.cs" />
     <Compile Include="Owner\OwnerDetail.cs" />
     <Compile Include="Owner\OwnerEdit.cs" />
     <Compile Include="Owner\OwnerListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenterEntity.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Renter\RenterCreate.cs" />
     <Compile Include="Renter\RenterDetail.cs" />
     <Compile Include="Renter\RenterEdit.cs" />
     <Compile Include="Renter\RenterListItem.cs" />
-    <Compile Include="TransactionEntity.cs">
-      <DependentUpon>CampsiteModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Transaction\TransactionCreate.cs" />
     <Compile Include="Transaction\TransactionDetail.cs" />
     <Compile Include="Transaction\TransactionEdit.cs" />
@@ -127,26 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="CampsiteModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CampsiteModels.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="CampsiteModels.edmx.diagram">
-      <DependentUpon>CampsiteModels.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CampsiteModels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CampsiteModels.edmx</DependentUpon>
-      <LastGenOutput>CampsiteModels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="CampsiteModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CampsiteModels.edmx</DependentUpon>
-      <LastGenOutput>CampsiteModels.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

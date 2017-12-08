@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Campsite.Models.Transaction
 {
-    class TransactionCreate
+    public class TransactionCreate
     {
+
     }
 }

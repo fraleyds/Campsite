@@ -12,6 +12,11 @@ namespace Campsite.Data.Migrations
                 c => new
                     {
                         InventoryId = c.Int(nullable: false, identity: true),
+                        Type = c.String(nullable: false, maxLength: 50),
+                        Description = c.String(nullable: false, maxLength: 500),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Condition = c.String(nullable: false, maxLength: 500),
+                        IsAvailable = c.Boolean(nullable: false),
                         OwnerId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.InventoryId)
@@ -33,11 +38,6 @@ namespace Campsite.Data.Migrations
                 c => new
                     {
                         ItemId = c.Int(nullable: false, identity: true),
-                        Type = c.String(nullable: false, maxLength: 50),
-                        Description = c.String(nullable: false, maxLength: 500),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Condition = c.String(nullable: false, maxLength: 500),
-                        IsAvailable = c.Boolean(nullable: false),
                         InventoryId = c.Int(nullable: false),
                         TransactionId = c.Int(),
                     })

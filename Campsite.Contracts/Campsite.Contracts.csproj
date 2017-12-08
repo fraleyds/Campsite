@@ -64,5 +64,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Campsite.Models\Campsite.Models.csproj">
+      <Project>{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}</Project>
+      <Name>Campsite.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

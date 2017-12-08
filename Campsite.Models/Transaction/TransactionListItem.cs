@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Campsite.Models.Transaction
 {
-    class TransactionListItem
+    public class TransactionListItem
     {
+        public int TransactionId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public decimal? FinalPrice { get; set; }
+        public int RenterId { get; set; }
     }
 }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Campsite.Models.Owner
 {
-    class OwnerEdit
+    public class OwnerEdit
     {
+        public int OwnerId { get; set; }
+        public string Contact { get; set; }
     }
 }

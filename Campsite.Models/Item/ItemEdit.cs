@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Campsite.Models.Item
 {
-    class ItemEdit
+    public class ItemEdit
     {
     }
 }

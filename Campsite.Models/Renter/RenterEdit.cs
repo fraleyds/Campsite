@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Campsite.Models.Renter
 {
-    class RenterEdit
+    public class RenterEdit
     {
+        public int RenterId { get; set; }
+        public string Contact { get; set; }
+        public bool IsRenting { get; set; }
     }
 }

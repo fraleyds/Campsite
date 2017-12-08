@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Campsite.Models.Inventory
 {
-    class InventoryDetail
+    public class InventoryDetail
     {
+        public int InventoryId { get; set; }
+        public string Type { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public string Condition { get; set; }
+        public bool IsAvailable { get; set; }
+        public int OwnerId { get; set; }
+        public override string ToString() => $"[{InventoryId}] {Type}";
     }
 }
