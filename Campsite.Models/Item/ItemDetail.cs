@@ -8,5 +8,7 @@ namespace Campsite.Models.Item
 {
     public class ItemDetail
     {
+        public int ItemId { get; set; }
+        public int InventoryId { get; set; }
     }
 }

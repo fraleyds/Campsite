@@ -8,5 +8,9 @@ namespace Campsite.Models.Transaction
 {
     public class TransactionEdit
     {
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public decimal? FinalPrice { get; set; }
+        public int RenterId { get; set; }
     }
 }

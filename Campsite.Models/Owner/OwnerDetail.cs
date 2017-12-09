@@ -8,5 +8,8 @@ namespace Campsite.Models.Owner
 {
     public class OwnerDetail
     {
+        public int OwnerId { get; set; }
+        public string Contact { get; set; }
+        public int OwnerRating { get; set; }
     }
 }

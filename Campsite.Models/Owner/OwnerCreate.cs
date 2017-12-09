@@ -11,5 +11,6 @@ namespace Campsite.Models.Owner
     {
         [Required]
         public string Contact { get; set; }
+        public int OwnerRating { get; set; }
     }
 }

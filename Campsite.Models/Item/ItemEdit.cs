@@ -8,5 +8,6 @@ namespace Campsite.Models.Item
 {
     public class ItemEdit
     {
+        public int? TransactionId { get; set; }
     }
 }
