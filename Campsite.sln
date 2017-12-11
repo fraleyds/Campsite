@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.Services", "Campsite.Services\Campsite.Services.csproj", "{91AC75FD-A8E6-4791-BC1C-3BB179168142}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.Data", "Campsite.Data\Campsite.Data.csproj", "{405DCF23-1695-491A-8983-DA19B6EA10E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.Models", "Campsite.Models\Campsite.Models.csproj", "{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campsite.WebApi", "Campsite.WebApi\Campsite.WebApi.csproj", "{4E5EBEBE-5C70-42F4-9D78-0E2F976512F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5EBEBE-5C70-42F4-9D78-0E2F976512F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5EBEBE-5C70-42F4-9D78-0E2F976512F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5EBEBE-5C70-42F4-9D78-0E2F976512F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5EBEBE-5C70-42F4-9D78-0E2F976512F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

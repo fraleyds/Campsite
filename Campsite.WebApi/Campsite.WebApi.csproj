@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{82FE4A80-1536-45C8-B461-52C5B19B8AC1}</ProjectGuid>
+    <ProjectGuid>{4E5EBEBE-5C70-42F4-9D78-0E2F976512F0}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -268,10 +268,8 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="ApplicationInsights.config" />
+    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -315,8 +313,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Campsite.Data\Campsite.Data.csproj">
-      <Project>{405DCF23-1695-491A-8983-DA19B6EA10E8}</Project>
+      <Project>{405dcf23-1695-491a-8983-da19b6ea10e8}</Project>
       <Name>Campsite.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Campsite.Models\Campsite.Models.csproj">
+      <Project>{4dc11a42-3ed3-4d51-9bdd-96093cc8f62d}</Project>
+      <Name>Campsite.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Campsite.Services\Campsite.Services.csproj">
+      <Project>{91ac75fd-a8e6-4791-bc1c-3bb179168142}</Project>
+      <Name>Campsite.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -335,7 +341,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54440</DevelopmentServerPort>
+          <DevelopmentServerPort>55899</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:54440/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

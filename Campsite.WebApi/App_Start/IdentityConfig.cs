@@ -10,18 +10,18 @@ namespace Campsite.WebApi
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    public class CampsiteUserManager : UserManager<CampsiteUser>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store)
+        public CampsiteUserManager(IUserStore<CampsiteUser> store)
             : base(store)
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        public static CampsiteUserManager Create(IdentityFactoryOptions<CampsiteUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new CampsiteUserManager(new UserStore<CampsiteUser>(context.Get<CampsiteDbContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+            manager.UserValidator = new UserValidator<CampsiteUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -38,7 +38,7 @@ namespace Campsite.WebApi
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                manager.UserTokenProvider = new DataProtectorTokenProvider<CampsiteUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
