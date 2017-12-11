@@ -10,7 +10,7 @@ namespace Campsite.Contracts
     public interface IInventoryService
     {
         bool CreateInventory(InventoryCreate model);
-        IEnumerable<InventoryListItem> GetInventory();
+        IEnumerable<InventoryListItem> GetInventories();
         InventoryDetail GetInventoryById(int invId);
         bool UpdateInventory(InventoryEdit model);
         bool DeleteInventory(int invId);

@@ -10,5 +10,6 @@ namespace Campsite.Models.Item
     {
         public int ItemId { get; set; }
         public int InventoryId { get; set; }
+        public int? TransactionId { get; set; }
     }
 }

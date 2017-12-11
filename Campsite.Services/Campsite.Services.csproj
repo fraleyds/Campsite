@@ -69,6 +69,10 @@
       <Project>{d3a6a0ee-b011-4657-9be5-0a4c71c0de4a}</Project>
       <Name>Campsite.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Campsite.Data\Campsite.Data.csproj">
+      <Project>{405DCF23-1695-491A-8983-DA19B6EA10E8}</Project>
+      <Name>Campsite.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Campsite.Models\Campsite.Models.csproj">
       <Project>{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}</Project>
       <Name>Campsite.Models</Name>

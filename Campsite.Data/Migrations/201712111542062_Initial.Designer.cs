@@ -13,7 +13,7 @@ namespace Campsite.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201712071903258_Initial"; }
+            get { return "201712111542062_Initial"; }
         }
         
         string IMigrationMetadata.Source

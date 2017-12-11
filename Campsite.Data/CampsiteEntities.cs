@@ -11,8 +11,10 @@ namespace Campsite.Data
     public class OwnerEntity
     {
         [Key]
-        [Required]
         public int OwnerId { get; set; }
+
+        [Required]
+        public Guid UserId { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -26,6 +28,9 @@ namespace Campsite.Data
     {
         [Key]
         public int RenterId { get; set; }
+
+        [Required]
+        public Guid UserId { get; set; }
 
         [Required]
         [MaxLength(100)]

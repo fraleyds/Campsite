@@ -28,6 +28,7 @@ namespace Campsite.Data.Migrations
                 c => new
                     {
                         OwnerId = c.Int(nullable: false, identity: true),
+                        UserId = c.Guid(nullable: false),
                         Contact = c.String(nullable: false, maxLength: 100),
                         OwnerRating = c.Int(nullable: false),
                     })
@@ -66,6 +67,7 @@ namespace Campsite.Data.Migrations
                 c => new
                     {
                         RenterId = c.Int(nullable: false, identity: true),
+                        UserId = c.Guid(nullable: false),
                         Contact = c.String(nullable: false, maxLength: 100),
                         RenterRating = c.Int(nullable: false),
                         IsRenting = c.Boolean(nullable: false),
