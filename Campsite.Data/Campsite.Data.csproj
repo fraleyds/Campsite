@@ -57,9 +57,9 @@
   <ItemGroup>
     <Compile Include="CampsiteEntities.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201712111542062_Initial.cs" />
-    <Compile Include="Migrations\201712111542062_Initial.Designer.cs">
-      <DependentUpon>201712111542062_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201712122056347_Initial.cs" />
+    <Compile Include="Migrations\201712122056347_Initial.Designer.cs">
+      <DependentUpon>201712122056347_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,8 +72,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712111542062_Initial.resx">
-      <DependentUpon>201712111542062_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712122056347_Initial.resx">
+      <DependentUpon>201712122056347_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

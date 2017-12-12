@@ -21,7 +21,7 @@ namespace Campsite.Data
         public string Contact { get; set; }
 
         [Range(1, 5)]
-        public int OwnerRating { get; set; }
+        public int? OwnerRating { get; set; }
     }
 
     public class RenterEntity

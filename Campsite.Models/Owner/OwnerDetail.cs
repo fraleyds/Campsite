@@ -10,6 +10,6 @@ namespace Campsite.Models.Owner
     {
         public int OwnerId { get; set; }
         public string Contact { get; set; }
-        public int OwnerRating { get; set; }
+        public int? OwnerRating { get; set; }
     }
 }
