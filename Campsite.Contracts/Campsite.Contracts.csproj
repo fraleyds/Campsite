@@ -55,8 +55,6 @@
   <ItemGroup>
     <Compile Include="IInventoryService.cs" />
     <Compile Include="IItemService.cs" />
-    <Compile Include="IOwnerService.cs" />
-    <Compile Include="IRenterService.cs" />
     <Compile Include="ITransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

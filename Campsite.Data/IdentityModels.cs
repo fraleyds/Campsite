@@ -41,8 +41,6 @@ namespace Campsite.Data
         }
 
         public DbSet<ItemEntity> Item { get; set; }
-        public DbSet<OwnerEntity> Owner { get; set; }
-        public DbSet<RenterEntity> Renter { get; set; }
         public DbSet<TransactionEntity> Transaction { get; set; }
         public DbSet<InventoryEntity> Inventory { get; set; }
 

@@ -11,11 +11,11 @@ namespace Campsite.Services
 {
     public class TransactionService : ITransactionService
     {
-        private readonly int _renterId;
+        private readonly Guid _userId;
 
-        public TransactionService(int renterId)
+        public TransactionService(Guid userId)
         {
-            _renterId = renterId;
+            _userId = userId;
         }
 
         public bool CreateTransaction(TransactionCreate model)
@@ -23,7 +23,7 @@ namespace Campsite.Services
             var entity =
                 new TransactionEntity()
                 {
-                    RenterId = _renterId,
+                    UserId = _userId,
                     StartDate = model.StartDate,
                     EndDate = model.EndDate,
                     FinalPrice = model.FinalPrice
@@ -42,7 +42,7 @@ namespace Campsite.Services
                 var query =
                     ctx
                         .Transaction
-                        .Where(e => e.RenterId == _renterId)
+                        .Where(e => e.UserId == _userId)
                         .Select(
                             e =>
                                 new TransactionListItem
@@ -64,7 +64,7 @@ namespace Campsite.Services
                 var entity =
                     ctx
                         .Transaction
-                        .Single(e => e.TransactionId == transactionId && e.RenterId == _renterId);
+                        .Single(e => e.TransactionId == transactionId && e.UserId == _userId);
 
                 return
                     new TransactionDetail
@@ -84,7 +84,7 @@ namespace Campsite.Services
                 var entity =
                     ctx
                         .Transaction
-                        .Single(e => e.TransactionId == model.TransactionId && e.RenterId == _renterId);
+                        .Single(e => e.TransactionId == model.TransactionId && e.UserId == _userId);
 
                 entity.StartDate = model.StartDate;
                 entity.EndDate = model.EndDate;
@@ -94,14 +94,14 @@ namespace Campsite.Services
             }
         }
 
-        public bool DeleteTransaction (int transactionId)
+        public bool DeleteTransaction(int transactionId)
         {
             using (var ctx = new CampsiteDbContext())
             {
                 var entity =
                     ctx
                         .Transaction
-                        .Single(e => e.TransactionId == transactionId && e.RenterId == _renterId);
+                        .Single(e => e.TransactionId == transactionId && e.UserId == _userId);
 
                 ctx.Transaction.Remove(entity);
                 return ctx.SaveChanges() == 1;

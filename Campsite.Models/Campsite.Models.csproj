@@ -63,15 +63,7 @@
     <Compile Include="Item\ItemDetail.cs" />
     <Compile Include="Item\ItemEdit.cs" />
     <Compile Include="Item\ItemListItem.cs" />
-    <Compile Include="Owner\OwnerCreate.cs" />
-    <Compile Include="Owner\OwnerDetail.cs" />
-    <Compile Include="Owner\OwnerEdit.cs" />
-    <Compile Include="Owner\OwnerListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renter\RenterCreate.cs" />
-    <Compile Include="Renter\RenterDetail.cs" />
-    <Compile Include="Renter\RenterEdit.cs" />
-    <Compile Include="Renter\RenterListItem.cs" />
     <Compile Include="Transaction\TransactionCreate.cs" />
     <Compile Include="Transaction\TransactionDetail.cs" />
     <Compile Include="Transaction\TransactionEdit.cs" />

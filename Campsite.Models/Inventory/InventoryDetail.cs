@@ -14,7 +14,6 @@ namespace Campsite.Models.Inventory
         public decimal Price { get; set; }
         public string Condition { get; set; }
         public bool IsAvailable { get; set; }
-        public int OwnerId { get; set; }
         public override string ToString() => $"[{InventoryId}] {Type}";
     }
 }

@@ -12,11 +12,11 @@ namespace Campsite.Services
 {
     public class InventoryService : IInventoryService
     {
-        private readonly int _ownerId;
+        private readonly Guid _userId;
 
-        public InventoryService(int ownerId)
+        public InventoryService(Guid userId)
         {
-            _ownerId = ownerId;
+            _userId = userId;
         }
 
         public bool CreateInventory(InventoryCreate model)
@@ -24,7 +24,7 @@ namespace Campsite.Services
             var entity =
                 new InventoryEntity()
                 {
-                    OwnerId = _ownerId,
+                    UserId = _userId,
                     Type = model.Type,
                     Description = model.Description,
                     Price = model.Price,
@@ -45,7 +45,7 @@ namespace Campsite.Services
                 var query =
                     ctx
                         .Inventory
-                        .Where(e => e.OwnerId == _ownerId)
+                        .Where(e => e.UserId == _userId)
                         .Select(
                             e =>
                                 new InventoryListItem
@@ -69,7 +69,7 @@ namespace Campsite.Services
                 var entity =
                     ctx
                         .Inventory
-                        .Single(e => e.InventoryId == inventoryId && e.OwnerId == _ownerId);
+                        .Single(e => e.InventoryId == inventoryId && e.UserId == _userId);
 
                 return
                     new InventoryDetail
@@ -91,7 +91,7 @@ namespace Campsite.Services
                 var entity =
                     ctx
                         .Inventory
-                        .Single(e => e.InventoryId == model.InventoryId && e.OwnerId == _ownerId);
+                        .Single(e => e.InventoryId == model.InventoryId && e.UserId == _userId);
 
                 entity.Type = model.Type;
                 entity.Description = model.Description;
@@ -110,7 +110,7 @@ namespace Campsite.Services
                 var entity =
                     ctx
                         .Inventory
-                        .Single(e => e.InventoryId == inventoryId && e.OwnerId == _ownerId);
+                        .Single(e => e.InventoryId == inventoryId && e.UserId == _userId);
 
                 ctx.Inventory.Remove(entity);
                 return ctx.SaveChanges() == 1;

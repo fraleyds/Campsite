@@ -8,45 +8,13 @@ using System.Threading.Tasks;
 
 namespace Campsite.Data
 {
-    public class OwnerEntity
-    {
-        [Key]
-        public int OwnerId { get; set; }
-
-        [Required]
-        public Guid UserId { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string Contact { get; set; }
-
-        [Range(1, 5)]
-        public int? OwnerRating { get; set; }
-    }
-
-    public class RenterEntity
-    {
-        [Key]
-        public int RenterId { get; set; }
-
-        [Required]
-        public Guid UserId { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string Contact { get; set; }
-
-        [Range(1, 5)]
-        public int RenterRating { get; set; }
-
-        [Required]
-        public bool IsRenting { get; set; }
-    }
-
     public class InventoryEntity
     {
         [Key]
         public int InventoryId { get; set; }
+
+        [Required]
+        public Guid UserId { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -65,12 +33,6 @@ namespace Campsite.Data
 
         [Required]
         public bool IsAvailable { get; set; }
-
-        // Owner foreign key
-        [Required]
-        public int OwnerId { get; set; }
-
-        public OwnerEntity OwnerEntity { get; set; }
     }
 
     public class ItemEntity
@@ -93,8 +55,10 @@ namespace Campsite.Data
     public class TransactionEntity
     {
         [Key]
-        [Required]
         public int TransactionId { get; set; }
+
+        [Required]
+        public Guid UserId { get; set; }
 
         [Required]
         public DateTime StartDate { get; set; }
@@ -102,11 +66,5 @@ namespace Campsite.Data
         public DateTime EndDate { get; set; }
 
         public decimal? FinalPrice { get; set; }
-
-        // Foreign key to establish relationship with renter
-        [Required]
-        public int RenterId { get; set; }
-
-        public RenterEntity RenterEntity { get; set; }
     }
 }

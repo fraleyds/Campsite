@@ -23,8 +23,5 @@ namespace Campsite.Models.Inventory
 
         [Required]
         public bool IsAvailable { get; set; }
-
-        [Required]
-        public int OwnerId { get; set; }
     }
 }
