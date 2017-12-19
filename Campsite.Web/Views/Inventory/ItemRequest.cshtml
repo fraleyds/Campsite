@@ -1,0 +1,75 @@
+﻿@model Campsite.Models.Inventory.InventoryEdit
+
+@{
+    ViewBag.Title = "ItemRequest";
+}
+
+<h2>Request this item!</h2>
+
+<div class="container">
+    <div class="col-md-6">
+        <h4>Details</h4>
+        <hr />
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Condition)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Condition)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsAvailable)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="col-md-6">
+        <h4>Request</h4>
+        <hr />
+        <form method="POST" action="@Html.DisplayFor(model => model.FormSpree)">
+            <input type="text" name="name" placeholder="Your name">
+            <br/>
+            <br/>
+            <input type="email" name="email" placeholder="Your email">
+            <br/>
+            <br/>
+            <textarea name="message" placeholder="Your message"></textarea>
+            <br/>
+            <br/>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

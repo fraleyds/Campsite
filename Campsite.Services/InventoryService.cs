@@ -45,11 +45,12 @@ namespace Campsite.Services
                 var query =
                     ctx
                         .Inventory
-                        .Where(e => e.UserId == _userId)
+                        //.Where(e => e.UserId == _userId)
                         .Select(
                             e =>
                                 new InventoryListItem
                                 {
+                                    UserId = e.UserId,
                                     InventoryId = e.InventoryId,
                                     Type = e.Type,
                                     Description = e.Description,
@@ -62,6 +63,24 @@ namespace Campsite.Services
             }
         }
 
+        public string GetFormspree(int inventoryId)
+        {
+            using (var ctx = new CampsiteDbContext())
+            {
+                var inventory =
+                    ctx
+                        .Inventory
+                        .Single(e => e.InventoryId == inventoryId);
+
+                var user =
+                    ctx
+                        .Users
+                        .Single(e => e.Id == inventory.UserId.ToString());
+            
+                return "https://formspree.io/" + user.Email;
+            }
+        }
+
         public InventoryDetail GetInventoryById(int inventoryId)
         {
             using (var ctx = new CampsiteDbContext())
@@ -69,11 +88,12 @@ namespace Campsite.Services
                 var entity =
                     ctx
                         .Inventory
-                        .Single(e => e.InventoryId == inventoryId && e.UserId == _userId);
+                        .Single(e => e.InventoryId == inventoryId);
 
                 return
                     new InventoryDetail
                     {
+                        UserId = entity.UserId,
                         InventoryId = entity.InventoryId,
                         Type = entity.Type,
                         Description = entity.Description,

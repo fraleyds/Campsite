@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Campsite.Contracts;
+using Campsite.Data;
 using Campsite.Models.Inventory;
 using Campsite.Services;
 using Microsoft.AspNet.Identity;
@@ -105,6 +106,31 @@ namespace Campsite.Web.Controllers
 
             ModelState.AddModelError("", "Inventory couldn't be updated");
             return View(model);
+        }
+
+        public ActionResult ItemRequest(int id)
+        {
+            using (var ctx = new CampsiteDbContext())
+            {
+                var service = CreateInventoryService();
+
+                var detail = service.GetInventoryById(id);
+
+                var formspree = service.GetFormspree(id);
+
+                var model =
+                    new InventoryEdit
+                    {
+                        FormSpree = formspree,
+                        Type = detail.Type,
+                        Description = detail.Description,
+                        Condition = detail.Condition,
+                        Price = detail.Price,
+                        IsAvailable = detail.IsAvailable
+                    };
+
+                return View(model);
+            }
         }
 
         [ActionName("Delete")]

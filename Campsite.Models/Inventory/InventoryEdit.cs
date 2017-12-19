@@ -9,6 +9,8 @@ namespace Campsite.Models.Inventory
     public class InventoryEdit
     {
         public int InventoryId { get; set; }
+        public Guid UserId { get; set; }
+        public string FormSpree { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
         public string Condition { get; set; }
