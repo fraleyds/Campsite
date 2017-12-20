@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Campsite.Models.Inventory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Campsite.Tests
+namespace Campsite.Tests.Controllers.InventoryControllerTests
 {
     [TestClass]
     public class CreatePost : InventoryControllerTestsBase

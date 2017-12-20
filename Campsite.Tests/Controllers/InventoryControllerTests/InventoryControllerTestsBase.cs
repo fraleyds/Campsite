@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using Campsite.Contracts;
 using Campsite.Web.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Campsite.Tests
+namespace Campsite.Tests.Controllers.InventoryControllerTests
 {
     /// <summary>
     /// Summary description for InventoryControllerTestsBase

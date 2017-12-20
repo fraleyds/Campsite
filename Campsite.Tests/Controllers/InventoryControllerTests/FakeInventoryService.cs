@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Campsite.Contracts;
 using Campsite.Models.Inventory;
 
-namespace Campsite.Tests
+namespace Campsite.Tests.Controllers.InventoryControllerTests
 {
     public class FakeInventoryService : IInventoryService
     {
