@@ -14,5 +14,6 @@ namespace Campsite.Contracts
         InventoryDetail GetInventoryById(int invId);
         bool UpdateInventory(InventoryEdit model);
         bool DeleteInventory(int invId);
+        string GetFormspree(int inventoryId);
     }
 }

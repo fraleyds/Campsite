@@ -14,29 +14,23 @@ namespace Campsite.Web.Controllers
     [Authorize]
     public class InventoryController : Controller
     {
-        //private InventoryService _inventoryService;
+        private readonly Lazy<IInventoryService> _inventoryService;
+        private IInventoryService InventoryService => _inventoryService.Value;
 
-        //public InventoryController()
-        //{
-        //    _inventoryService = new InventoryService(Guid.Parse(User.Identity.GetUserId()));
-        //}
-
-        //public InventoryController(InventoryService inventoryService)
-        //{
-        //    _inventoryService = inventoryService;
-        //}
-
-        private InventoryService CreateInventoryService()
+        public InventoryController()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new InventoryService(userId);
-            return service;
+            _inventoryService = new Lazy<IInventoryService>(() => new InventoryService(Guid.Parse(User.Identity.GetUserId())));
+        }
+
+        public InventoryController(Lazy<IInventoryService> inventoryService)
+        {
+            _inventoryService = inventoryService;
         }
 
         // GET: Inventories
         public ActionResult Index()
         {
-            var model = CreateInventoryService().GetInventories();
+            var model = InventoryService.GetInventories();
 
             return View(model);
         }
@@ -53,7 +47,7 @@ namespace Campsite.Web.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (CreateInventoryService().CreateInventory(model))
+            if (InventoryService.CreateInventory(model))
             {
                 TempData["SaveResult"] = "Item data created.";
                 return RedirectToAction("Index");
@@ -65,14 +59,14 @@ namespace Campsite.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var model = CreateInventoryService().GetInventoryById(id);
+            var model = InventoryService.GetInventoryById(id);
 
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            var detail = CreateInventoryService().GetInventoryById(id);
+            var detail = InventoryService.GetInventoryById(id);
             var model =
                 new InventoryEdit
                 {
@@ -98,7 +92,7 @@ namespace Campsite.Web.Controllers
                 return View(model);
             }
 
-            if (CreateInventoryService().UpdateInventory(model))
+            if (InventoryService.UpdateInventory(model))
             {
                 TempData["SaveResult"] = "Inventory updated";
                 return RedirectToAction("Index");
@@ -112,11 +106,9 @@ namespace Campsite.Web.Controllers
         {
             using (var ctx = new CampsiteDbContext())
             {
-                var service = CreateInventoryService();
+                var detail = InventoryService.GetInventoryById(id);
 
-                var detail = service.GetInventoryById(id);
-
-                var formspree = service.GetFormspree(id);
+                var formspree = InventoryService.GetFormspree(id);
 
                 var model =
                     new InventoryEdit
@@ -136,7 +128,7 @@ namespace Campsite.Web.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var model = CreateInventoryService().GetInventoryById(id);
+            var model = InventoryService.GetInventoryById(id);
 
             return View(model);
         }
@@ -146,7 +138,7 @@ namespace Campsite.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteInventory(int id)
         {
-            CreateInventoryService().DeleteInventory(id);
+            InventoryService.DeleteInventory(id);
 
             TempData["SaveResult"] = "Inventory deleted";
 

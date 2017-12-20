@@ -101,8 +101,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\InventoryControllerTests\CreatePost.cs" />
+    <Compile Include="Controllers\InventoryControllerTests\FakeInventoryService.cs" />
+    <Compile Include="Controllers\InventoryControllerTests\InventoryControllerTestsBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -111,6 +113,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Campsite.Contracts\Campsite.Contracts.csproj">
+      <Project>{D3A6A0EE-B011-4657-9BE5-0A4C71C0DE4A}</Project>
+      <Name>Campsite.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Campsite.Models\Campsite.Models.csproj">
+      <Project>{4DC11A42-3ED3-4D51-9BDD-96093CC8F62D}</Project>
+      <Name>Campsite.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Campsite.Web\Campsite.Web.csproj">
       <Project>{4AB9F559-D2F3-49A2-ACA9-A4ABBCACCCB6}</Project>
       <Name>Campsite.Web</Name>
