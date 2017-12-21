@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace Campsite.Models.Inventory
         public string Condition { get; set; }
 
         [Required]
+        [DisplayName("Available?")]
         public bool IsAvailable { get; set; }
     }
 }
