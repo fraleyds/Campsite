@@ -70,6 +70,8 @@ namespace Campsite.Web.Controllers
             var model =
                 new InventoryEdit
                 {
+                    InventoryId = detail.InventoryId,
+                    UserId = detail.UserId,
                     Type = detail.Type,
                     Description = detail.Description,
                     Condition = detail.Condition,
